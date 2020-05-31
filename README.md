@@ -6,4 +6,4 @@ To start a project, you need:
 2.  Follow to folder `cd nextjs-blog`
 3.  Install dependencies: `npm install`
 4.  Start app: `npm run build` and `npm run start` (or `yarn build` and `yarn start`)
-5. Open `http://localhost:3000`
+5. Open [localhost:3000](http://localhost:3000)
