@@ -1,22 +1,19 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, Store, MiddlewareAPI } from 'redux'
 import reducer from '../reducer'
 import { useMemo } from 'react'
 import api from '../middlewares/api'
 
-const initialState = {
-  title: '',
-  body: '',
-}
+const initialState = {}
 
 const enhancer = applyMiddleware(api)
 
-let store
+let store: Store
 
 function initStore(preloadedState = initialState) {
   return createStore(reducer, preloadedState, enhancer)
 }
 
-export const initializeStore = (preloadedState) => {
+export const initializeStore = (preloadedState: any) => {
   let _store = store ?? initStore(preloadedState)
 
   // After navigating to a page with an initial Redux state, merge that state
@@ -38,7 +35,7 @@ export const initializeStore = (preloadedState) => {
   return _store
 }
 
-export function useStore(initialState) {
+export function useStore(initialState: any) {
   const store = useMemo(() => initializeStore(initialState), [initialState])
   return store
 }

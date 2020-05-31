@@ -1,7 +1,14 @@
-import { START, SUCCESS, FAIL } from '../constants'
+import { SEND_POST, START, SUCCESS, FAIL } from '../constants'
 import Axios from 'axios'
+import { Store, Dispatch } from 'redux'
 
-export default (store) => (next) => (action) => {
+interface Action {
+  type: typeof SEND_POST
+  payload: object
+  callAPI: string
+}
+
+export default (store: any) => (next: any) => (action: any) => {
   const { callAPI, type, payload, ...rest } = action
   console.log('payload: ', payload)
   if (!callAPI) return next(action)

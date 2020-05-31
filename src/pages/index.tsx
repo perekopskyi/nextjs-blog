@@ -35,7 +35,6 @@ const Line = styled.hr`
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const allPostsData = await getAllPosts()
-  console.log('allPostsData: ', allPostsData)
   return {
     props: {
       allPostsData: allPostsData.reverse(),
@@ -52,8 +51,6 @@ export default function Home({
     id: string
   }[]
 }) {
-  console.log('---allPostsData', allPostsData)
-
   return (
     <Layout home>
       <Head>

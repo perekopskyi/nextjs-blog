@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { AnyStyledComponent } from 'styled-components'
 import { connect } from 'react-redux'
 import { useState } from 'react'
 
@@ -16,13 +16,13 @@ const Label = styled.label`
   display: block;
 `
 
-const StyledInput = styled.input`
+const StyledInput: AnyStyledComponent = styled.input`
   display: block;
   width: 100%;
   padding: 7px;
   font-size: 16px;
   border-width: 1px;
-  border-color: ${(props) => (props.error ? 'red' : '#cccccc')};
+  border-color: ${(props: any) => (props.error ? 'red' : '#cccccc')};
   background-color: #ffffff;
   color: #000000;
   border-style: solid;
@@ -32,13 +32,13 @@ const StyledInput = styled.input`
   outline: none;
 `
 
-const Textarea = styled.textarea`
+const Textarea: AnyStyledComponent = styled.textarea`
   display: block;
   width: 100%;
   padding: 7px;
   font-size: 16px;
   border-width: 1px;
-  border-color: ${(props) => (props.error ? 'red' : '#cccccc')};
+  border-color: ${(props: any) => (props.error ? 'red' : '#cccccc')};
   background-color: #ffffff;
   color: #000000;
   border-style: solid;
@@ -54,20 +54,20 @@ const Form = (props: any) => {
   const [text, setText] = useState('')
   const [error, setError] = useState(false)
 
-  const handlerTitle = (event) => {
+  const handlerTitle = (event: any) => {
     setTilte(event.target.value)
     if (event.target.value.length > 0) {
       setError(false)
     }
   }
-  const handlerText = (event) => {
+  const handlerText = (event: any) => {
     setText(event.target.value)
     if (event.target.value.length > 0) {
       setError(false)
     }
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault()
     if (title.length === 0 || text.length === 0) {
       setError(true)
@@ -98,7 +98,7 @@ const Form = (props: any) => {
         <Label htmlFor="text">Text</Label>
         <Textarea
           id="text"
-          rows="5"
+          rows={5}
           value={text}
           onChange={handlerText}
           error={error}
