@@ -4,4 +4,4 @@ To start a project, you need:
 
 1.  Clone the repository: `git clone url`
 3.  Install dependencies: `npm install`
-4.  Start app: `yarn build` and `yarn start` or using dev server `yarn dev`
+4.  Start app: `yarn build` and `yarn start`
