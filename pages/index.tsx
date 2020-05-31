@@ -5,17 +5,8 @@ import styled from 'styled-components'
 
 import { getAllPosts } from '../lib/posts'
 import Layout, { siteTitle } from '../components/layout'
-
-const HeadingMd = styled.section`
-  .headingMd {
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
-`
-
-const HeadingMdWithPadding1px = styled(HeadingMd)`
-  padding-top: 1px;
-`
+import { Section } from '../components/section'
+import { Button } from '../components/button'
 
 const HeadingLg = styled.h2`
   font-size: 1.5rem;
@@ -36,13 +27,18 @@ const ListItem = styled.li`
 const LightText = styled.small`
   color: #999;
 `
+const Line = styled.hr`
+  height: 2px;
+  border-color: #0070f3;
+  opacity: 0.3;
+`
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const allPostsData = await getAllPosts()
   console.log('allPostsData: ', allPostsData)
   return {
     props: {
-      allPostsData,
+      allPostsData: allPostsData.reverse(),
     },
   }
 }
@@ -63,24 +59,28 @@ export default function Home({
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <HeadingMd>
+      <Section>
         <p>
           Hi, I'm Yevhenii. I'm web developer. It's my mini blog that uses open
           API. The following tools were involved in creating this application:
           Next JS, React, Redux, styled-components and axios
         </p>
-      </HeadingMd>
-      <HeadingMdWithPadding1px>
-        <HeadingLg>Blog</HeadingLg>
-        <Link href="/posts/new">
-          <a>Add post</a>
-        </Link>
+      </Section>
+      <Section>
+        <Button>
+          <Link href="/posts/new">
+            <a>Add new post</a>
+          </Link>
+        </Button>
+        <Line />
         <List>
           {allPostsData.map(({ id, title, body }) => {
             return (
               <ListItem key={id}>
                 <Link href="/posts/[id]" as={`/posts/${id}`}>
-                  <a>{title}</a>
+                  <a>
+                    Post {id}. {title}
+                  </a>
                 </Link>
                 <br />
                 <LightText>{cutPostBody(body)}</LightText>
@@ -88,7 +88,7 @@ export default function Home({
             )
           })}
         </List>
-      </HeadingMdWithPadding1px>
+      </Section>
     </Layout>
   )
 }
