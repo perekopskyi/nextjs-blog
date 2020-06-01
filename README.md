@@ -7,3 +7,5 @@ To start a project, you need:
 3.  Install dependencies: `npm install`
 4.  Start app: `npm run build` and `npm run start` (or `yarn build` and `yarn start`)
 5. Open [localhost:3000](http://localhost:3000)
+
+[Demo](https://nextjs-blog.perekopskyi.now.sh/)
